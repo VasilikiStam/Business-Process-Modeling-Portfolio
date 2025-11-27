@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_1ui2dfe" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Web Modeler" exporterVersion="e6667ca" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0">
+  <decision id="Decision_1tyb7ky" name="ΕΚΔΟΣΗ ΔΕΛΤΙΟΥ ΑΝΕΡΓΙΑΣ">
+    <informationRequirement id="InformationRequirement_0visoqy">
+      <requiredInput href="#InputData_0el66au" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_17xu8xk">
+      <requiredInput href="#InputData_1ujjk5i" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_02df5nk">
+      <requiredInput href="#InputData_1pdsmxn" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0xjsxiz">
+      <requiredInput href="#InputData_1ll21xc" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0umipa8">
+      <requiredInput href="#InputData_183vb72" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0d09fgu">
+      <requiredDecision href="#Decision_0g3bbxg" />
+    </informationRequirement>
+    <knowledgeRequirement id="KnowledgeRequirement_15usood">
+      <requiredKnowledge href="#BusinessKnowledgeModel_1lkksgk" />
+    </knowledgeRequirement>
+    <decisionTable id="DecisionTable_1ggdgqv">
+      <input id="Input_1">
+        <inputExpression id="InputExpression_1" typeRef="number">
+          <text>ΗΛΙΚΙΑ</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0b22yvb">
+        <inputExpression id="LiteralExpression_0sdk3sn" typeRef="boolean">
+          <text>ΙΚΑΝΟΤΗΤΑ ΓΙΑ ΕΡΓΑΣΙΑ</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1w5nn4d" biodi:width="192">
+        <inputExpression id="LiteralExpression_1m3a25j" typeRef="boolean">
+          <text>ΔΙΑΘΕΣΙΜΟΤΗΤΑ</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0o0v08d" biodi:width="192">
+        <inputExpression id="LiteralExpression_0txv0j5" typeRef="boolean">
+          <text>ΣΤΡΑΤΕΥΣΗ</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1oujoii">
+        <inputExpression id="LiteralExpression_0dhu1s4" typeRef="boolean">
+          <text>ΠΡΟΣΒΑΣΗ ΣΕ ΗΛΕΚΤΡΟΝΙΚΕΣ ΥΠΗΡΕΣΙΕΣ Δ.Υ.Π.Α</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="ΕΠΙΒΕΒΑΙΩΣΗ ΕΚΔΟΣΗΣ ΔΕΛΤΙΟΥ ΑΝΕΡΓΙΑΣ" typeRef="boolean" />
+      <rule id="DecisionRule_04l2vnz">
+        <inputEntry id="UnaryTests_1k9abjk">
+          <text>[0..14]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uw6y43">
+          <text>True</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0v4fwjy">
+          <text>True</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10seuhq">
+          <text>False</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_198ph0i">
+          <text>True</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1wpxubg">
+          <text>False</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1tnwo54">
+        <description>Το δελτίο ανεργίας μπορεί να εκδοθεί μόνο αν ο αιτούντας είναι 15 ετών και άνω αλλά μικρότερος των 75 ετών.</description>
+        <inputEntry id="UnaryTests_0ow1b29">
+          <text>[15..74]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yfm5ry">
+          <text>True</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14vjdjl">
+          <text>True</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0xjayv2">
+          <text>False</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1w530zf">
+          <text>True</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_085n7ng">
+          <text>True</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ozraue">
+        <description>Στις επόμενες σειρές εννοείται πως όλες οι στήλες οέρα από αυτη που της έχει δοθεί τιμή είναι σε κατάσταση που επιτρέπει την έκδοση δελτίου ανεργίας.Π.χ η ΗΛΙΚΙΑ στην 4η γραμμή εννοείται πως ειναι [15..74].</description>
+        <inputEntry id="UnaryTests_0w88ukc">
+          <text>&gt;74</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ubem32">
+          <text>True</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1idvfb9">
+          <text>True</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15h5wrc">
+          <text>False</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15jb4dd">
+          <text>True</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1x4rgva">
+          <text>False</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05bes21">
+        <description>Το δελτίο ανεργίας μπορεί να εκδοθεί μόνο αν ο αιτούντας είναι ικανός για εργασία.</description>
+        <inputEntry id="UnaryTests_1swr52o">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qncycz">
+          <text>False</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mewm0m">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1u4gl9u">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0se43j0">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_122xgwc">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0smsmd5">
+        <description>Το δελτίο ανεργίας μπορεί να εκδοθεί μόνο αν ο αιτούντας είναι διαθέσιμος για εργασία.</description>
+        <inputEntry id="UnaryTests_157ldyk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ittzbf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pzdcqw">
+          <text>False</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17m6rkq">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uha9wb">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kj6r3d">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0c9n7dq">
+        <description>Το δελτίο ανεργίας μπορεί να εκδοθεί μόνο αν ο αιτούντας δεν βρίσκεται σε στράτευση.</description>
+        <inputEntry id="UnaryTests_0k4oy2r">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16wcgdm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0bbr4gg">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01d9o1x">
+          <text>True</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jr8rrc">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dmvgik">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_040brbe">
+        <description>Το δελτίο ανεργίας μπορεί να εκδοθεί μόνο αν ο αιτούντας έχει πρόσβαση στις ηλεκτρονικές υπηρεσίες Δ.Υ.Π.Α</description>
+        <inputEntry id="UnaryTests_1xr680a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10o9l5a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0i5qepd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qrq14t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1esv6pe">
+          <text>False</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_16fq0i6">
+          <text></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0el66au" name="ΗΛΙΚΙΑ" />
+  <inputData id="InputData_1ujjk5i" name="ΙΚΑΝΟΤΗΤΑ ΓΙΑ ΕΡΓΑΣΙΑ" />
+  <inputData id="InputData_1pdsmxn" name="ΚΑΤΟΧΗ ΑΔΕΙΑΣ ΔΙΑΜΟΝΗΣ" />
+  <inputData id="InputData_1aiqulj" name="ΚΑΤΟΧΗ ΚΩΔΙΚΩΝ" />
+  <knowledgeSource id="KnowledgeSource_1gh3gpx" name="ΝΟΜΟΘΕΣΙΑ" />
+  <businessKnowledgeModel id="BusinessKnowledgeModel_1lkksgk" name="Δ.Υ.Π.Α">
+    <authorityRequirement id="AuthorityRequirement_1blmutq">
+      <requiredAuthority href="#KnowledgeSource_1gh3gpx" />
+    </authorityRequirement>
+  </businessKnowledgeModel>
+  <inputData id="InputData_1ll21xc" name="ΔΙΑΘΕΣΙΜΟΤΗΤΑ" />
+  <businessKnowledgeModel id="BusinessKnowledgeModel_0nxgbvc" name="Δ.Υ.Π.Α" />
+  <inputData id="InputData_183vb72" name="ΣΤΡΑΤΕΥΣΗ" />
+  <decision id="Decision_0g3bbxg" name="ΕΠΙΒΕΒΑΙΩΣΗ ΠΡΟΣΒΑΣΗΣ ΣΕ ΗΛΕΚΤΡΟΝΙΚΕΣ ΥΠΗΡΕΣΙΣ Δ.Υ.Π.Α">
+    <informationRequirement id="InformationRequirement_1ore5vb">
+      <requiredInput href="#InputData_1aiqulj" />
+    </informationRequirement>
+    <knowledgeRequirement id="KnowledgeRequirement_08jy77p">
+      <requiredKnowledge href="#BusinessKnowledgeModel_0nxgbvc" />
+    </knowledgeRequirement>
+    <decisionTable id="DecisionTable_1y4an5k">
+      <input id="InputClause_1fsri0s" biodi:width="192">
+        <inputExpression id="LiteralExpression_0ifxw3m" typeRef="boolean">
+          <text>ΕΓΚΥΡΟΤΗΤΑ ΠΡΟΣΩΠΙΚΩΝ ΚΩΔΙΚΩΝ ΑΙΤΟΥΝΤΑ </text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_085sb7i" name="ΕΠΙΒΕΒΑΙΩΣΗ ΠΡΟΣΒΑΣΗΣ" typeRef="boolean" />
+      <rule id="DecisionRule_1eizagz">
+        <description>Εάν οι κωδικοί πρόσβασης του αιτούντα TAXISnet ή Δ.Υ.Π.Α είναι έγκυροι τότε επιτρέπεται η πρόσβαση στις ηλεκτρονικές υπηρεσίες Δ.Υ.Π.Α .</description>
+        <inputEntry id="UnaryTests_03ljl28">
+          <text>True</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hlcbsh">
+          <text>True</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03an4et">
+        <description>Η πρόσβαση απαγορεύεται εάν οι κωδικοί δεν είναι έγκυροι.</description>
+        <inputEntry id="UnaryTests_1mmsw6k">
+          <text>False</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_113ug5e">
+          <text>False</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <textAnnotation id="TextAnnotation_0q2v89o">
+    <text>Αναφέρεται στην αποδεχτή ηλικία αιτούντα που είνα:ι 15-74 ετών.</text>
+  </textAnnotation>
+  <association id="Association_1oipmpe">
+    <sourceRef href="#TextAnnotation_0q2v89o" />
+    <targetRef href="#InputData_0el66au" />
+  </association>
+  <textAnnotation id="TextAnnotation_0x4j9nv">
+    <text>Αναφέρεται σε πολίτες τρίτης χώρας (εκτός Ε.Ε).</text>
+  </textAnnotation>
+  <association id="Association_019zbt6">
+    <sourceRef href="#TextAnnotation_0x4j9nv" />
+    <targetRef href="#InputData_1pdsmxn" />
+  </association>
+  <textAnnotation id="TextAnnotation_0elp23m">
+    <text>Αναφέρεται σε κατοχή κωδικών είτε TAXISnet είτε Δ.Υ.Π.Α από αιτούντα.</text>
+  </textAnnotation>
+  <association id="Association_1utewqk">
+    <sourceRef href="#TextAnnotation_0elp23m" />
+    <targetRef href="#InputData_1aiqulj" />
+  </association>
+  <textAnnotation id="TextAnnotation_1ilh81w">
+    <text>Απαφασίζεται εάν είναι έγκυροι οι κωδικοί είτε TAXISnet είτε Δ.Υ.Π.Α ώστε να επιτραπεί η είσοδος στις ηλεκτρονικές υπηρεσίες Δ.Υ.Π.Α</text>
+  </textAnnotation>
+  <association id="Association_172d69j">
+    <sourceRef href="#TextAnnotation_1ilh81w" />
+    <targetRef href="#Decision_0g3bbxg" />
+  </association>
+  <textAnnotation id="TextAnnotation_0ff3vcm">
+    <text>Αναφέρεται στην ικανότητα του αιτούνται να εργαστεί δηλαδή να μην αντιμετωπίζει κάποιο σοβαρό πρόβλημα υγείας ή αναπηρία που να καθιστά την εργασία αδύνατη.Επιπλέον αναφέρεται στην φυσική και πνευματική δυνατότητα του αιτούντα να συμμετάσχει σε δραστηριότητες σχετικές με την εργασία.</text>
+  </textAnnotation>
+  <association id="Association_1lnrdzp">
+    <sourceRef href="#TextAnnotation_0ff3vcm" />
+    <targetRef href="#InputData_1ujjk5i" />
+  </association>
+  <textAnnotation id="TextAnnotation_1jhsbr8">
+    <text>Αφορά κυρίως την προθυμία και δυνατότητα του αιτούντα να εργαστεί.</text>
+  </textAnnotation>
+  <association id="Association_18s746k">
+    <sourceRef href="#TextAnnotation_1jhsbr8" />
+    <targetRef href="#InputData_1ll21xc" />
+  </association>
+  <textAnnotation id="TextAnnotation_1qbyvrc">
+    <text>(άρθρο 3 ν. 1545/1985) Οι αιτούντες πρέπει να είναι διαθέσιμοι για εργασία ή συμμετοχή σε επαγγελματικά προγράμματα.
+(άρθρο 30 ν. 4144/2013) Καλύπτονται επαγγελματίες με άδεια που δεν ασκούν δραστηριότητα, ενώ το (άρθρο 44 ν. 3986/2011) αφορά διακοπή επαγγελματικής δραστηριότητας για διευκόλυνση επανένταξης στην εργασία.
+(16 ν. 4921/2022) Από το Ψηφιακό Μητρώο Δ.ΥΠ.Α. εξαιρούνται εργαζόμενοι που αναζητούν άλλη εργασία, συνταξιούχοι (εκτός σύνταξης θανάτου), μαθητευόμενοι, στρατεύσιμοι, κρατούμενοι, και ωφελούμενοι προγραμμάτων «Προεργασίας» ή απόκτησης εργασιακής εμπειρίας.</text>
+  </textAnnotation>
+  <association id="Association_18m8slq">
+    <sourceRef href="#TextAnnotation_1qbyvrc" />
+    <targetRef href="#KnowledgeSource_1gh3gpx" />
+  </association>
+  <textAnnotation id="TextAnnotation_0lits6j">
+    <text>Αναφέρεται στην προϋπόθεση ο αιτούντας να μη βρίσκεται σε στράτευση.</text>
+  </textAnnotation>
+  <association id="Association_01398pk">
+    <sourceRef href="#TextAnnotation_0lits6j" />
+    <targetRef href="#InputData_183vb72" />
+  </association>
+  <textAnnotation id="TextAnnotation_0og45vp">
+    <text>Αποφασίζεται εάν θα εκδοθεί το δελτίο ανεργίας του αιτούντα.</text>
+  </textAnnotation>
+  <association id="Association_0l3brnh">
+    <sourceRef href="#TextAnnotation_0og45vp" />
+    <targetRef href="#Decision_1tyb7ky" />
+  </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_1tyb7ky">
+        <dc:Bounds height="80" width="180" x="920" y="400" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1xvaqft" dmnElementRef="InputData_0el66au">
+        <dc:Bounds height="45" width="125" x="437" y="619" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0vu4srt" dmnElementRef="InputData_1ujjk5i">
+        <dc:Bounds height="45" width="125" x="618" y="619" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1ogdzk1" dmnElementRef="InputData_1pdsmxn">
+        <dc:Bounds height="45" width="125" x="807" y="619" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_054hciy" dmnElementRef="InputData_1aiqulj">
+        <dc:Bounds height="45" width="125" x="1417" y="777" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1jkqian" dmnElementRef="KnowledgeSource_1gh3gpx">
+        <dc:Bounds height="63" width="100" x="210" y="408" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0yq3x3k" dmnElementRef="BusinessKnowledgeModel_1lkksgk">
+        <dc:Bounds height="46" width="135" x="522" y="418" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1s7sfiq" dmnElementRef="InputData_1ll21xc">
+        <dc:Bounds height="45" width="125" x="960" y="619" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_0l2js40" dmnElementRef="TextAnnotation_0q2v89o">
+        <dc:Bounds height="80" width="100" x="450" y="730" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_171ku5s" dmnElementRef="Association_1oipmpe">
+        <di:waypoint x="500" y="730" />
+        <di:waypoint x="500" y="664" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0pcdjux" dmnElementRef="TextAnnotation_0x4j9nv">
+        <dc:Bounds height="80" width="100" x="820" y="730" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1mccvud" dmnElementRef="Association_019zbt6">
+        <di:waypoint x="870" y="730" />
+        <di:waypoint x="870" y="664" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_15a5ttr" dmnElementRef="TextAnnotation_0elp23m">
+        <dc:Bounds height="80" width="100" x="1430" y="880" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1bpaw7b" dmnElementRef="Association_1utewqk">
+        <di:waypoint x="1480" y="880" />
+        <di:waypoint x="1480" y="822" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0tfrfdb" dmnElementRef="InformationRequirement_1ore5vb">
+        <di:waypoint x="1480" y="777" />
+        <di:waypoint x="1480" y="702" />
+        <di:waypoint x="1480" y="682" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0zwduo1" dmnElementRef="TextAnnotation_1ilh81w">
+        <dc:Bounds height="134" width="128" x="1606" y="413" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_140or3b" dmnElementRef="Association_172d69j">
+        <di:waypoint x="1624" y="547" />
+        <di:waypoint x="1540" y="602" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1klu6je" dmnElementRef="BusinessKnowledgeModel_0nxgbvc">
+        <dc:Bounds height="46" width="135" x="1853" y="619" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0uxn7mq" dmnElementRef="KnowledgeRequirement_08jy77p">
+        <di:waypoint x="1853" y="642" />
+        <di:waypoint x="1570" y="640" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_082i39g" dmnElementRef="TextAnnotation_0ff3vcm">
+        <dc:Bounds height="330" width="112" x="631" y="730" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1nby1zl" dmnElementRef="Association_1lnrdzp">
+        <di:waypoint x="681" y="730" />
+        <di:waypoint x="681" y="664" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1up6bvw" dmnElementRef="TextAnnotation_1jhsbr8">
+        <dc:Bounds height="80" width="100" x="973" y="730" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1pfkh19" dmnElementRef="Association_18s746k">
+        <di:waypoint x="1023" y="730" />
+        <di:waypoint x="1023" y="664" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_15hto2u" dmnElementRef="TextAnnotation_1qbyvrc">
+        <dc:Bounds height="240" width="260" x="160" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1caty1o" dmnElementRef="Association_18m8slq">
+        <di:waypoint x="243" y="320" />
+        <di:waypoint x="258" y="408" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0hxta35" dmnElementRef="AuthorityRequirement_1blmutq">
+        <di:waypoint x="310" y="440" />
+        <di:waypoint x="522" y="440" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_183s8sh" dmnElementRef="KnowledgeRequirement_15usood">
+        <di:waypoint x="657" y="441" />
+        <di:waypoint x="920" y="440" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0gg8t22" dmnElementRef="InputData_183vb72">
+        <dc:Bounds height="45" width="125" x="1157" y="619" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_118azb0" dmnElementRef="TextAnnotation_0lits6j">
+        <dc:Bounds height="80" width="100" x="1170" y="730" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0fypoue" dmnElementRef="Association_01398pk">
+        <di:waypoint x="1220" y="730" />
+        <di:waypoint x="1220" y="664" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_00id8ku" dmnElementRef="InformationRequirement_0visoqy">
+        <di:waypoint x="500" y="619" />
+        <di:waypoint x="946" y="500" />
+        <di:waypoint x="946" y="480" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0s8zawl" dmnElementRef="InformationRequirement_17xu8xk">
+        <di:waypoint x="681" y="619" />
+        <di:waypoint x="971" y="500" />
+        <di:waypoint x="971" y="480" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1qy89xt" dmnElementRef="InformationRequirement_02df5nk">
+        <di:waypoint x="870" y="619" />
+        <di:waypoint x="997" y="500" />
+        <di:waypoint x="997" y="480" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_1tepin8" dmnElementRef="InformationRequirement_0xjsxiz">
+        <di:waypoint x="1023" y="619" />
+        <di:waypoint x="1023" y="500" />
+        <di:waypoint x="1023" y="480" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_03bgpy6" dmnElementRef="InformationRequirement_0umipa8">
+        <di:waypoint x="1220" y="619" />
+        <di:waypoint x="1049" y="500" />
+        <di:waypoint x="1049" y="480" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="DMNEdge_0kxutit" dmnElementRef="InformationRequirement_0d09fgu">
+        <di:waypoint x="1480" y="602" />
+        <di:waypoint x="1074" y="500" />
+        <di:waypoint x="1074" y="480" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_09ukmge" dmnElementRef="Decision_0g3bbxg">
+        <dc:Bounds height="80" width="180" x="1390" y="602" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_02dgaui" dmnElementRef="TextAnnotation_0og45vp">
+        <dc:Bounds height="80" width="100" x="960" y="230" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1gdw0su" dmnElementRef="Association_0l3brnh">
+        <di:waypoint x="1010" y="310" />
+        <di:waypoint x="1010" y="400" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
